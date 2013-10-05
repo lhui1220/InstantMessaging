@@ -80,7 +80,8 @@ public class MessagingServerFrame extends JFrame implements ActionListener,OnSta
         portLabel  = new JLabel("Port:");
         portInput  = new JTextField(10);
         portInput.setMaximumSize(new Dimension(80,30));
-        portInput.setAlignmentY(CENTER_ALIGNMENT);
+        portInput.setText(String.valueOf(IMessagingServerConstants.DEFAULT_TCP_PORT));
+        portInput.setEditable(false);
         
 		startButton = new JButton("Start");
 		startButton.addActionListener(this);

@@ -12,25 +12,26 @@ public class MessagingServer implements IMessagingServerConstants{
 	
 	private OnStateChangedListener listener;
 	
-	public MessagingServer(){
-
-	}
-	
 	public void setOnStateChangedListener(OnStateChangedListener listener){
 		this.listener = listener;
 	}
 	
 	public void start(){
+		this.start(DEFAULT_TCP_PORT);
+	}
+	
+	public void start(int port){
+
 		try {
-			serverSocket = new ServerSocket(TCP_PORT);
-System.out.println("Server "+serverSocket.getInetAddress().getHostAddress()+" has been started at port: "+serverSocket.getLocalPort());
+			serverSocket = new ServerSocket(port);
+System.out.println("Server has been started at port: "+serverSocket.getLocalPort());
 			isStarted = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 			isStarted = false;
 		}
 		
-		//notify caller that the server has been started 
+		//notify the caller that the server be started successful
 		if(listener != null){
 			listener.onStart(isStarted);
 		}
